@@ -5,11 +5,10 @@ import com.springcourse.workshopmongo.dto.UserDTO;
 import com.springcourse.workshopmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -32,6 +31,16 @@ public class UserResource {
     public ResponseEntity<UserDTO> findById(@PathVariable String id) {  // id tem que ser o mesmo que o value id por isso @PathVariable
         User obj = service.findById(id);
         return ResponseEntity.ok().body(new UserDTO(obj)); // converter obj em UserDTO
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> insert(@RequestBody UserDTO objDto) {
+        User obj = service.fromDTO(objDto);
+        obj = service.insert(obj);
+        // URI vai pegar o endereco do novo objeto que inserir
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        // Vai retornar resposta vazia com o codigo 201 e com o cabecalho contendo a localizacao do novo recurso criado
+        return ResponseEntity.created(uri).build();
     }
 
 }
