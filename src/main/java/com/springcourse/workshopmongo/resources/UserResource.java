@@ -1,6 +1,8 @@
 package com.springcourse.workshopmongo.resources;
 
+import com.springcourse.workshopmongo.domain.Post;
 import com.springcourse.workshopmongo.domain.User;
+import com.springcourse.workshopmongo.dto.AuthorDTO;
 import com.springcourse.workshopmongo.dto.UserDTO;
 import com.springcourse.workshopmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +57,13 @@ public class UserResource {
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(value = "/{id}/posts")
+    // ResponseEntity http response
+    public ResponseEntity<List<Post>> findPosts(@PathVariable String id) {  // id tem que ser o mesmo que o value id por isso @PathVariable
+        User obj = service.findById(id);
+        return ResponseEntity.ok().body(obj.getPosts()); // Endpoint retornando o posts do usuario obj
     }
 
 }
