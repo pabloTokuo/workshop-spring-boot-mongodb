@@ -2,7 +2,6 @@ package com.springcourse.workshopmongo.resources;
 
 import com.springcourse.workshopmongo.domain.Post;
 import com.springcourse.workshopmongo.domain.User;
-import com.springcourse.workshopmongo.dto.AuthorDTO;
 import com.springcourse.workshopmongo.dto.UserDTO;
 import com.springcourse.workshopmongo.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
