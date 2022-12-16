@@ -8,7 +8,7 @@ Workshop SpringBoot MongoDB é uma aplicação back-end construída durante o cu
 A aplicação consiste em uma API Rest de serviços web com integração ao banco de dados orientado a documentos MongoDB. Em nossa aplicação web, teremos um usuário, onde ele pode ter vários posts e neste post ele pode ter vários comentários.
 
 ## Modelo conceitual
-![Modelo Conceitual]()
+![Modelo Conceitual](https://github.com/pabloTokuo/workshop-spring-boot-mongodb/blob/main/assets/image.png)
 
 # Tecnologias utilizadas
 ## Back end
